@@ -27,7 +27,7 @@
         // FB.AppEvents.logPageView();
 
         FB.getLoginStatus(function(response) {
-          statusChangeCallback(response);
+          handleLoginStatusRes(response);
         });
       };
 
@@ -43,8 +43,8 @@
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
 
-      function statusChangeCallback(response) {
-        console.log("statusChangeCallback");
+      function handleLoginStatusRes(response) {
+        console.log("handleLoginStatusRes");
         console.log(response);
         if (response.status === "connected") {
         } else {
@@ -54,20 +54,31 @@
 
       function checkLoginState() {
         FB.getLoginStatus(function(response) {
-          statusChangeCallback(response);
+          handleLoginStatusRes(response);
         });
       }
+
+      FB.login(
+        function(response) {
+          // handle the response
+        },
+        { scope: "public_profile,email" }
+      );
     </script>
 
+    <!-- PAGE LAYOUT -->
     <div class="jumbotron">
       <h1 class="text-center">Log in via Facebook</h1>
     </div>
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <!-- CODE FROM FACEBOOK- LOG-IN BUTTON -->
+          <!-- CODE FROM FACEBOOK- LOG-IN BUTTONS -->
           <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
           </fb:login-button>
+          <br />
+          <br />
+          <br />
           <div
             class="fb-login-button"
             data-width=""
@@ -76,6 +87,10 @@
             data-auto-logout-link="true"
             data-use-continue-as="true"
           ></div>
+          <br />
+          <br />
+          <br />
+          <button type="button" class="btn btn-large btn-primary" onclick="FB.login()">Log in with Facebook</button>
         </div>
       </div>
     </div>
