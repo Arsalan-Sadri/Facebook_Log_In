@@ -14,7 +14,16 @@
     <title>Sign-in</title>
   </head>
   <body>
-    <!-- CODE FROM FACEBOOK- LOADING SDK-->
+    <!-- CODE FROM FACEBOOK- LOADING THE JS SDK FOR FACEBOOK -->
+    <!-- <div id="fb-root"></div>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId=296990761206364"
+    ></script> -->
+
+    <!-- CODE FROM FACEBOOK- FACEBOOK SDK FOR JS-->
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -46,11 +55,20 @@
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <button type="button" class="btn btn-lg btn-primary">Log in via Facebook</button>
+          <!-- CODE FROM FACEBOOK- LOG-IN BUTTON -->
+          <div
+            class="fb-login-button"
+            data-width=""
+            data-size="large"
+            data-button-type="continue_with"
+            data-auto-logout-link="false"
+            data-use-continue-as="true"
+          ></div>
         </div>
       </div>
     </div>
-    <!-- CODE FROM FACEBOOK- -->
+
+    <!-- CODE FROM FACEBOOK- CHECKING THE LOG-IN STATUS-->
     <script>
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
