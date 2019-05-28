@@ -14,23 +14,22 @@
     <title>Sign-in</title>
   </head>
   <body>
-    <!-- CODE FROM FACEBOOK- FACEBOOK SDK FOR JS-->
     <script>
+      // INITIALIZE AND SETUP THE SDK
       window.fbAsyncInit = function() {
         FB.init({
-          appId: "296990761206364",
+          appId: "<-- APPLICATION ID -->",
           cookie: true,
           xfbml: true,
           version: "v3.3"
         });
 
-        // FB.AppEvents.logPageView();
-
         FB.getLoginStatus(function(response) {
-          handleLoginStatusRes(response);
+          handleLoginStatusResponse(response);
         });
       };
 
+      // LOADING FACEBOOK SDK FOR JS
       (function(d, s, id) {
         var js,
           fjs = d.getElementsByTagName(s)[0];
@@ -43,8 +42,9 @@
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
 
-      function handleLoginStatusRes(response) {
-        console.log("handleLoginStatusRes");
+      // HANDLING FB.getLoginStatus() RESPONSE  
+      function handleLoginStatusResponse(response) {
+        console.log("handleLoginStatusResponse");
         console.log(response);
         if (response.status === "connected") {
         } else {
@@ -52,35 +52,39 @@
         }
       }
 
+      // HANDLING FB.getLoginStatus() RESPONSE FOR 
       function checkLoginState() {
         FB.getLoginStatus(function(response) {
-          handleLoginStatusRes(response);
+          handleLoginStatusResponse(response);
         });
       }
 
+      // LOG-IN IN 2 DIFFERENT WAYS VIA VARIOUS LOG-IN DIALOGS
+      // 1- Use FB.login() from the JavaScript SDK 
       function fbLogin() {
         FB.login(
           function(response) {
-            // handle the response
+            handleLoginStatusResponse(response);
           },
           { scope: "public_profile,email" }
         );
       }
     </script>
 
-    <!-- PAGE LAYOUT -->
+    <!-- FRONT-END DESIGN LAYOUT -->
     <div class="jumbotron">
       <h1 class="text-center">Log in via Facebook</h1>
     </div>
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <!-- CODE FROM FACEBOOK- LOG-IN BUTTONS -->
+          <!-- 2- Use the Login Button -->
           <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
           </fb:login-button>
           <br />
           <br />
           <br />
+          <!-- 2- Use the Login Button -->
           <div
             class="fb-login-button"
             data-width=""
