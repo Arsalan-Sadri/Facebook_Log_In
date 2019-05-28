@@ -58,12 +58,14 @@
         });
       }
 
-      FB.login(
-        function(response) {
-          // handle the response
-        },
-        { scope: "public_profile,email" }
-      );
+      function fbLogin() {
+        FB.login(
+          function(response) {
+            // handle the response
+          },
+          { scope: "public_profile,email" }
+        );
+      }
     </script>
 
     <!-- PAGE LAYOUT -->
@@ -90,7 +92,9 @@
           <br />
           <br />
           <br />
-          <button type="button" class="btn btn-large btn-primary" onclick="FB.login()">Log in with Facebook</button>
+          <button type="button" class="btn btn-large btn-primary" onclick="fbLogin();">
+            Log in with Facebook
+          </button>
         </div>
       </div>
     </div>
