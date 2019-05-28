@@ -40,13 +40,23 @@
       })(document, "script", "facebook-jssdk");
     </script>
 
+    <div class="jumbotron">
+      <h1 class="text-center">Log in via Facebook</h1>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <button type="button" class="btn btn-lg btn-primary">Log in via Facebook</button>
+        </div>
+      </div>
+    </div>
     <!-- CODE FROM FACEBOOK- -->
     <script>
       FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
       });
     </script>
-    
+
     <!-- BOOTSTRAP SCRIPTS -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
