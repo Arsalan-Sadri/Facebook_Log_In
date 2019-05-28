@@ -4,25 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- BOOTSTRAP STYLESHEET -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-
     <title>Sign-in</title>
   </head>
   <body>
-    <!-- CODE FROM FACEBOOK- LOADING THE JS SDK FOR FACEBOOK -->
-    <!-- <div id="fb-root"></div>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId=296990761206364"
-    ></script> -->
-
     <!-- CODE FROM FACEBOOK- FACEBOOK SDK FOR JS-->
     <script>
       window.fbAsyncInit = function() {
@@ -33,7 +24,11 @@
           version: "v3.3"
         });
 
-        FB.AppEvents.logPageView();
+        // FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
       };
 
       (function(d, s, id) {
@@ -47,7 +42,24 @@
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
+
+      function statusChangeCallback(response) {
+        console.log("statusChangeCallback");
+        console.log(response);
+        if (response.status === "connected") {
+        } else {
+          console.log("Ah!! Not connected!");
+        }
+      }
+
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
     </script>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
 
     <div class="jumbotron">
       <h1 class="text-center">Log in via Facebook</h1>
@@ -56,24 +68,17 @@
       <div class="row">
         <div class="col text-center">
           <!-- CODE FROM FACEBOOK- LOG-IN BUTTON -->
-          <div
+          <!-- <div
             class="fb-login-button"
             data-width=""
             data-size="large"
             data-button-type="continue_with"
-            data-auto-logout-link="false"
+            data-auto-logout-link="true"
             data-use-continue-as="true"
-          ></div>
+          ></div> -->
         </div>
       </div>
     </div>
-
-    <!-- CODE FROM FACEBOOK- CHECKING THE LOG-IN STATUS-->
-    <script>
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-      });
-    </script>
 
     <!-- BOOTSTRAP SCRIPTS -->
     <script
