@@ -59,8 +59,6 @@
       }
     </script>
 
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
-
     <div class="jumbotron">
       <h1 class="text-center">Log in via Facebook</h1>
     </div>
@@ -68,6 +66,8 @@
       <div class="row">
         <div class="col text-center">
           <!-- CODE FROM FACEBOOK- LOG-IN BUTTON -->
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+          </fb:login-button>
           <!-- <div
             class="fb-login-button"
             data-width=""
